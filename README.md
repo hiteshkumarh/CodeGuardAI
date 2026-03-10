@@ -13,9 +13,13 @@ It is designed to help developers identify issues early in the development cycle
 Manual code reviews are time-consuming and often inconsistent. Developers may miss critical issues such as:
 
 • Security vulnerabilities
+
 • High algorithmic complexity
+
 • Poor coding practices
+
 • Maintainability issues
+
 • Hidden logical bugs
 
 Traditional static analyzers detect structural issues but **cannot understand code intent or deeper logical problems**.
