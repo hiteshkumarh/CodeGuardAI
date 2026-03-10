@@ -24,29 +24,32 @@ The system integrates **FastAPI**, **Python AST**, **ESLint**, and **Groq LLM** 
 The system follows a layered architecture:
 
 ```
-Client / GitHub Webhook
-          │
-          ▼
-      FastAPI API Layer
-          │
-          ▼
-     Core Analysis Engine
-          │
-          ▼
- ┌─────────────────────────────┐
- │ Static Analysis Layer       │
- │ • Python AST Analyzer       │
- │ • JavaScript ESLint Engine  │
- └─────────────────────────────┘
-          │
-          ▼
-     LLM Semantic Analysis
-          │
-          ▼
-      Aggregator & Scoring
-          │
-          ▼
-      SQLite Database
+User Request
+     │
+     ▼
+FastAPI API Endpoint (/analyze)
+     │
+     ▼
+Language Detection
+     │
+     ▼
+Static Analysis
+ (AST / ESLint)
+     │
+     ▼
+LLM Semantic Analysis
+     │
+     ▼
+Issue Aggregation
+     │
+     ▼
+Code Quality Scoring
+     │
+     ▼
+Database Storage
+     │
+     ▼
+JSON Response to Client
 ```
 
 ---
