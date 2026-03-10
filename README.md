@@ -57,13 +57,21 @@ This hybrid approach provides **both rule-based accuracy and AI reasoning**.
 # 🚀 Features
 
 • Hybrid code analysis using **static analyzers + AI models**
+
 • Python code inspection using **AST (Abstract Syntax Tree)**
+
 • JavaScript analysis using **ESLint**
+
 • LLM-powered semantic code review using **Groq (Llama 3)**
+
 • Automated **code quality scoring system**
+
 • REST API built with **FastAPI**
+
 • SQLite database for **analysis report storage**
+
 • Modular and scalable backend architecture
+
 • GitHub webhook support for automated **pull request code reviews**
 
 ---
