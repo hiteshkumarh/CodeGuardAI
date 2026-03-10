@@ -364,9 +364,13 @@ Other Tools
 # 📌 Future Improvements
 
 • Support additional programming languages
+
 • Implement asynchronous analysis pipeline
+
 • Add dashboard for code quality metrics
+
 • Improve LLM prompt engineering
+
 • CI/CD integration for automated code reviews
 
 ---
