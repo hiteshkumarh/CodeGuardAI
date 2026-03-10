@@ -1,16 +1,3 @@
-Your README is already **good**, but it misses a few important things that make projects look **serious to recruiters**:
-
-* Problem Statement
-* Motivation
-* Clear Workflow section
-* System Architecture explanation
-* Better feature wording
-* Cleaner installation section
-* Contribution / License placeholders
-* Better formatting
-
-Below is a **refined professional README** you can directly copy-paste.
-
 # 🛡️ CodeGuard AI
 
 CodeGuard AI is a **hybrid AI-powered code review system** that combines **static code analysis** with **LLM-based semantic analysis** to automatically detect security vulnerabilities, complexity issues, and maintainability problems in source code.
