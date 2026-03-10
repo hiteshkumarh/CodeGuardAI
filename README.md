@@ -340,26 +340,26 @@ Example response:
 
 # 🛠️ Tech Stack
 
-Backend
+1.Backend
 
   • Python
   • FastAPI
   • SQLAlchemy
 
-Static Analysis
+2.Static Analysis
 
   • Python AST
   • ESLint
 
-AI Integration
+3.AI Integration
 
   • Groq LLM (Llama 3)
 
-Database
+4.Database
 
   • SQLite
 
-Other Tools
+5.Other Tools
 
   • GitHub Webhooks
   • REST API
