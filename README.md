@@ -56,43 +56,44 @@ Client / GitHub Webhook
 ```
 CodeGuardAI
 │
-├── codeguard-backend
+├── codeguard-backend                       (Main backend application folder)
 │   │
-│   ├── requirements.txt
-│   ├── run_and_save.py
-│   ├── run_validation.py
+│   ├── requirements.txt                    (Lists all Python dependencies needed to run the backend)
+│   ├── run_and_save.py                     (Script to run code analysis and save results into the database)
+│   ├── run_validation.py                   (Testing script that sends sample code to the API to verify system behavior)
 │   │
-│   ├── app
-│   │   ├── api
-│   │   │   ├── dependencies.py
-│   │   │   ├── routes.py
-│   │   │   └── webhook.py
+│   ├── app                                 (Core FastAPI backend application)
 │   │   │
-│   │   ├── core
-│   │   │   └── analyze.py
+│   │   ├── api                             (Handles API endpoints and request routing)
+│   │   │   ├── dependencies.py              (Defines shared FastAPI dependencies such as DB session injection)
+│   │   │   ├── routes.py                    (Main REST endpoints like /analyze and /reports)
+│   │   │   └── webhook.py                   (GitHub webhook handler for automatic code review on pull requests)
 │   │   │
-│   │   ├── models
-│   │   │   └── report_model.py
+│   │   ├── core                            (Core analysis orchestration logic)
+│   │   │   └── analyze.py                   (Coordinates static analysis + LLM analysis and returns combined results)
 │   │   │
-│   │   ├── services
-│   │   │   ├── aggregator.py
-│   │   │   ├── comment_service.py
-│   │   │   ├── external_service.py
-│   │   │   ├── github_service.py
-│   │   │   ├── llm_service.py
-│   │   │   └── parser_service.py
+│   │   ├── models                          (Database ORM models)
+│   │   │   └── report_model.py              (SQLAlchemy model representing stored analysis reports)
 │   │   │
-│   │   ├── config.py
-│   │   ├── database.py
-│   │   └── main.py
+│   │   ├── services                        (Business logic layer)
+│   │   │   ├── aggregator.py                (Combines results from static analyzers and LLM analysis)
+│   │   │   ├── comment_service.py           (Formats and posts analysis results as GitHub PR comments)
+│   │   │   ├── external_service.py          (Handles calls to external APIs such as Groq LLM)
+│   │   │   ├── github_service.py            (Interacts with GitHub API to fetch PR code and post comments)
+│   │   │   ├── llm_service.py               (Handles prompt creation and communication with the LLM)
+│   │   │   └── parser_service.py            (Processes and structures code analysis results)
+│   │   │
+│   │   ├── config.py                       (Central configuration management using environment variables)
+│   │   ├── database.py                     (Database connection setup and session management)
+│   │   └── main.py                         (FastAPI application entry point and server initialization)
 │   │
-│   └── js-analyzer
-│       ├── analyze.js
-│       ├── eslint.config.js
-│       └── package.json
+│   └── js-analyzer                         (Node.js microservice for JavaScript static analysis)
+│       ├── analyze.js                      (Runs ESLint to analyze JavaScript code)
+│       ├── eslint.config.js                (ESLint configuration defining rules and checks)
+│       └── package.json                    (Node.js dependencies and project configuration)
 │
-├── README.md
-└── .gitignore
+├── README.md                               (Project documentation including setup instructions)
+└── .gitignore                              (Specifies files that Git should ignore such as .env, db files, and caches)
 ```
 
 ---
