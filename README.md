@@ -342,27 +342,27 @@ Example response:
 
 Backend
 
-• Python
-• FastAPI
-• SQLAlchemy
+  • Python
+  • FastAPI
+  • SQLAlchemy
 
 Static Analysis
 
-• Python AST
-• ESLint
+  • Python AST
+  • ESLint
 
 AI Integration
 
-• Groq LLM (Llama 3)
+  • Groq LLM (Llama 3)
 
 Database
 
-• SQLite
+  • SQLite
 
 Other Tools
 
-• GitHub Webhooks
-• REST API
+  • GitHub Webhooks
+  • REST API
 
 ---
 
