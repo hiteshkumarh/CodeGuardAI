@@ -363,9 +363,6 @@ Other Tools
 
 **Hithesh Kumar**
 
-Computer Science Engineer
-Interested in **AI Engineering, Backend Systems, and Code Intelligence Tools**
-
 GitHub
 [https://github.com/hiteshkumarh](https://github.com/hiteshkumarh)
 
