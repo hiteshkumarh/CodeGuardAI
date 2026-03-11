@@ -1,68 +1,94 @@
+Your README is already good. To make it look **startup-level and more impressive to recruiters**, add two things:
+
+1️⃣ **Project Demo section**
+2️⃣ **API Endpoint Documentation section**
+
+Below is the **FULL upgraded README** with those included. You can **copy-paste directly**.
+
+---
+
 # 🛡️ CodeGuard AI
 
 CodeGuard AI is a **hybrid AI-powered code review system** that combines **static code analysis** with **LLM-based semantic analysis** to automatically detect security vulnerabilities, complexity issues, and maintainability problems in source code.
 
 The system integrates **FastAPI**, **Python AST**, **ESLint**, and **Groq LLM (Llama 3)** to perform automated code reviews and generate a **code quality score**.
 
-It is designed to help developers identify issues early in the development cycle and improve overall code quality.
+It is designed to help developers detect issues early in the development cycle and improve overall code quality.
 
 ---
 
 # 📌 Problem Statement
 
-Manual code reviews are time-consuming and often inconsistent. Developers may miss critical issues such as:
+Manual code reviews are essential for maintaining high-quality software, but they have several limitations:
 
-• Security vulnerabilities
+• Time-consuming for development teams
+• Inconsistent review quality between developers
+• Hard to detect hidden logical issues
+• Security vulnerabilities can be overlooked
+• Performance issues such as high algorithmic complexity may go unnoticed
 
-• High algorithmic complexity
+Traditional **static analysis tools** detect structural issues but cannot understand **code intent or deeper logic**.
 
-• Poor coding practices
+AI models can understand semantics but lack deterministic rule-based validation.
 
-• Maintainability issues
-
-• Hidden logical bugs
-
-Traditional static analyzers detect structural issues but **cannot understand code intent or deeper logical problems**.
-
-On the other hand, AI models can understand code semantics but lack deterministic rule-based validation.
-
-There is a need for a **hybrid system that combines both approaches** to provide accurate and intelligent automated code reviews.
+Therefore, there is a need for a **hybrid system combining rule-based analysis with AI reasoning**.
 
 ---
 
 # 🎯 Solution
 
-CodeGuard AI addresses this problem by combining:
+CodeGuard AI solves this by combining:
 
-1. **Static Analysis Engines**
+### Static Code Analysis
 
-   * Python AST
-   * ESLint
+Rule-based analysis using:
 
-2. **AI-Based Semantic Analysis**
+• **Python AST (Abstract Syntax Tree)**
+• **ESLint for JavaScript**
 
-   * Groq LLM (Llama 3)
+This detects:
 
-The system analyzes source code using both methods and produces:
+• syntax errors
+• unsafe functions (`eval`)
+• nested loop complexity
+• code style violations
+
+---
+
+### AI Semantic Analysis
+
+Code is also analyzed using **Groq LLM (Llama 3)** which identifies:
+
+• logical bugs
+• security vulnerabilities
+• maintainability problems
+• inefficient algorithms
+• readability issues
+
+---
+
+### Final Output
+
+The system generates:
 
 • detected issues
 • severity classification
 • improvement suggestions
 • overall code quality score
 
-This hybrid approach provides **both rule-based accuracy and AI reasoning**.
+This hybrid approach provides both **deterministic accuracy and AI reasoning**.
 
 ---
 
 # 🚀 Features
 
-• Hybrid code analysis using **static analyzers + AI models**
+• Hybrid analysis using **static analyzers + AI models**
 
 • Python code inspection using **AST (Abstract Syntax Tree)**
 
 • JavaScript analysis using **ESLint**
 
-• LLM-powered semantic code review using **Groq (Llama 3)**
+• LLM-powered semantic analysis using **Groq (Llama 3)**
 
 • Automated **code quality scoring system**
 
@@ -70,15 +96,54 @@ This hybrid approach provides **both rule-based accuracy and AI reasoning**.
 
 • SQLite database for **analysis report storage**
 
-• Modular and scalable backend architecture
+• Modular backend architecture
 
 • GitHub webhook support for automated **pull request code reviews**
 
 ---
 
-# 🏗️ System Architecture
+# 🎬 Project Demo
 
-The system follows a **layered architecture** that separates API handling, analysis logic, AI integration, and data storage.
+Example request:
+
+```
+POST /analyze
+```
+
+Input code:
+
+```
+def add(a,b):
+    return a+b
+```
+
+Example API response:
+
+```
+{
+  "language": "python",
+  "score": 90,
+  "severity_breakdown": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 2
+  },
+  "static_issues": [],
+  "ai_issues": [
+    {
+      "type": "Code Style",
+      "message": "Function name should use snake_case",
+      "severity": "low"
+    }
+  ],
+  "summary": "The code works correctly but has minor style issues."
+}
+```
+
+---
+
+# 🏗️ System Architecture
 
 ```
 User Request / GitHub PR
@@ -114,147 +179,7 @@ User Request / GitHub PR
 
 ---
 
-# 🔄 System Workflow
-
-You can paste this **clean formatted section** directly into your README.
-
-## 🔄 End-to-End Analysis Pipeline
-
-When a code snippet is submitted to CodeGuard AI, the system processes it through a multi-stage analysis pipeline. Each stage is responsible for detecting different types of issues and generating a final code quality score.
-
-### 1️⃣ Client Request
-
-A developer sends source code to the system through the REST API endpoint.
-
-Example:
-
-```
-POST /analyze
-```
-
-The request contains a JSON payload with the code to analyze.
-
----
-
-### 2️⃣ FastAPI API Endpoint
-
-The FastAPI backend receives the request and validates the payload using Pydantic schemas.
-
-The endpoint then forwards the code to the internal analysis engine.
-
----
-
-### 3️⃣ Language Detection
-
-The system automatically detects the programming language of the submitted code.
-
-Supported languages:
-
-* Python
-* JavaScript
-
-The detection is performed using syntax patterns and keywords.
-
----
-
-### 4️⃣ Static Code Analysis
-
-The system performs rule-based static analysis.
-
-Python code is analyzed using:
-
-* **Python AST (Abstract Syntax Tree)**
-
-JavaScript code is analyzed using:
-
-* **ESLint**
-
-Static analysis detects:
-
-* syntax errors
-* unsafe functions (e.g., `eval`)
-* complexity issues
-* code style violations
-
----
-
-### 5️⃣ LLM Semantic Analysis
-
-The code is sent to a Large Language Model via the **Groq API (Llama 3)**.
-
-The AI performs deeper semantic analysis and identifies:
-
-* logical bugs
-* security vulnerabilities
-* inefficient algorithms
-* readability problems
-* maintainability issues
-
-The LLM acts like a **senior developer performing a code review**.
-
----
-
-### 6️⃣ Issue Aggregation
-
-Results from the static analyzer and the LLM are combined.
-
-The system:
-
-* merges issues
-* removes duplicates
-* standardizes severity levels
-
----
-
-### 7️⃣ Code Quality Scoring
-
-The system calculates a **code health score**.
-
-The score starts at:
-
-```
-100
-```
-
-Penalties are applied based on issue severity.
-
-| Severity | Penalty |
-| -------- | ------- |
-| Critical | -30     |
-| High     | -20     |
-| Medium   | -10     |
-| Low      | -5      |
-
-The final score reflects the overall code quality.
-
----
-
-### 8️⃣ JSON Response
-
-The system returns a structured JSON response containing:
-
-* detected language
-* final score
-* severity breakdown
-* static analysis issues
-* AI-generated issues
-* LLM summary
-
-Example response:
-
-```
-{
-  "language": "python",
-  "score": 90,
-  "static_issues": [],
-  "ai_issues": [...],
-  "summary": "Code works but has minor style issues."
-}
-```
-
----
-
-### 📊 Pipeline Overview
+# 🔄 End-to-End Analysis Pipeline
 
 ```
 Client Request
@@ -274,6 +199,37 @@ Score Calculation
       ↓
 JSON Response
 ```
+
+---
+
+# 📡 API Endpoints
+
+### Analyze Code
+
+```
+POST /analyze
+```
+
+Request body:
+
+```
+{
+  "code": "def add(a,b): return a+b"
+}
+```
+
+Returns analysis result including issues and score.
+
+---
+
+### Get Reports
+
+```
+GET /reports
+```
+
+Returns stored analysis reports from the database.
+
 ---
 
 # 📂 Project Structure
@@ -326,27 +282,32 @@ CodeGuardAI
 
 # ⚙️ Installation
 
-Clone the repository:
+Clone the repository
 
 ```
 git clone https://github.com/hiteshkumarh/CodeGuardAI.git
 cd CodeGuardAI/codeguard-backend
 ```
 
-Create virtual environment:
+Create virtual environment
 
 ```
 python -m venv venv
+```
+
+Activate environment
+
+```
 venv\Scripts\activate
 ```
 
-Install Python dependencies:
+Install Python dependencies
 
 ```
 pip install -r requirements.txt
 ```
 
-Install JavaScript analyzer dependencies:
+Install JavaScript analyzer
 
 ```
 cd js-analyzer
@@ -358,19 +319,19 @@ cd ..
 
 # ▶️ Running the Backend
 
-Start the FastAPI server:
+Start FastAPI server
 
 ```
 uvicorn app.main:app --reload
 ```
 
-The API will run at:
+Server will run at
 
 ```
 http://127.0.0.1:8000
 ```
 
-Interactive API documentation:
+API documentation
 
 ```
 http://127.0.0.1:8000/docs
@@ -379,8 +340,6 @@ http://127.0.0.1:8000/docs
 ---
 
 # 🧪 Run Validation Tests
-
-Run sample analysis tests:
 
 ```
 python run_validation.py
@@ -392,7 +351,7 @@ This script sends test code snippets to the API and prints analysis results.
 
 # 🔐 Environment Variables
 
-Create a `.env` file inside `codeguard-backend`.
+Create `.env` file inside `codeguard-backend`.
 
 Example:
 
@@ -402,64 +361,47 @@ GROQ_API_KEY=your_groq_api_key_here
 
 ---
 
-# 📊 Example API Request
+# 🛠️ Tech Stack
 
-Endpoint:
+### Backend
 
-```
-POST /analyze
-```
+• Python
+• FastAPI
+• SQLAlchemy
 
-Example request:
+### Static Analysis
 
-```
-{
-  "code": "def add(a, b): return a + b"
-}
-```
+• Python AST
+• ESLint
 
-Example response:
+### AI Integration
 
-```
-{
-  "language": "python",
-  "score": 85,
-  "issues": [
-    {
-      "severity": "low",
-      "message": "Missing function documentation"
-    }
-  ]
-}
-```
+• Groq LLM (Llama 3)
+
+### Database
+
+• SQLite
+
+### Other Tools
+
+• GitHub Webhooks
+• REST API
 
 ---
 
-# 🛠️ Tech Stack
+# ⭐ Why This Project Matters
 
-1.Backend
+Modern development teams rely heavily on automated code review tools to maintain code quality at scale.
 
-  • Python
-  • FastAPI
-  • SQLAlchemy
+CodeGuard AI demonstrates how **traditional static analysis can be combined with LLM capabilities** to build intelligent developer tools.
 
-2.Static Analysis
+This project showcases:
 
-  • Python AST
-  • ESLint
-
-3.AI Integration
-
-  • Groq LLM (Llama 3)
-
-4.Database
-
-  • SQLite
-
-5.Other Tools
-
-  • GitHub Webhooks
-  • REST API
+• backend architecture design
+• AI integration in developer tools
+• static code analysis systems
+• REST API development
+• automated code scoring
 
 ---
 
@@ -471,9 +413,7 @@ Example response:
 
 • Add dashboard for code quality metrics
 
-• Improve LLM prompt engineering
-
-• CI/CD integration for automated code reviews
+• CI/CD integration for automated PR reviews
 
 ---
 
@@ -483,8 +423,6 @@ Example response:
 
 GitHub
 [https://github.com/hiteshkumarh](https://github.com/hiteshkumarh)
-
-
 
 
 
