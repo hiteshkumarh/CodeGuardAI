@@ -1,12 +1,3 @@
-Your README is already good. To make it look **startup-level and more impressive to recruiters**, add two things:
-
-1️⃣ **Project Demo section**
-2️⃣ **API Endpoint Documentation section**
-
-Below is the **FULL upgraded README** with those included. You can **copy-paste directly**.
-
----
-
 # 🛡️ CodeGuard AI
 
 CodeGuard AI is a **hybrid AI-powered code review system** that combines **static code analysis** with **LLM-based semantic analysis** to automatically detect security vulnerabilities, complexity issues, and maintainability problems in source code.
