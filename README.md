@@ -116,46 +116,107 @@ User Request / GitHub PR
 
 # 🔄 System Workflow
 
-1️⃣ **User Request**
+You can paste this **clean formatted section** directly into your README.
 
-A developer sends a code snippet to the API or triggers analysis through a GitHub webhook.
+## 🔄 End-to-End Analysis Pipeline
 
-2️⃣ **Language Detection**
+When a code snippet is submitted to CodeGuard AI, the system processes it through a multi-stage analysis pipeline. Each stage is responsible for detecting different types of issues and generating a final code quality score.
 
-The system detects whether the code is written in **Python or JavaScript**.
+### 1️⃣ Client Request
 
-3️⃣ **Static Code Analysis**
+A developer sends source code to the system through the REST API endpoint.
 
-The code is analyzed using rule-based analyzers.
+Example:
 
-Python:
+```
+POST /analyze
+```
 
-* AST parsing
-* complexity detection
-* dangerous function detection (`eval`, `exec`)
+The request contains a JSON payload with the code to analyze.
 
-JavaScript:
+---
 
-* ESLint rules
-* syntax validation
-* scope and style checks
+### 2️⃣ FastAPI API Endpoint
 
-4️⃣ **LLM Semantic Analysis**
+The FastAPI backend receives the request and validates the payload using Pydantic schemas.
 
-The code is sent to **Groq Llama-3 model** to detect:
+The endpoint then forwards the code to the internal analysis engine.
 
-• logical bugs
-• security risks
-• maintainability issues
-• inefficient algorithms
+---
 
-5️⃣ **Issue Aggregation**
+### 3️⃣ Language Detection
 
-Results from both analyzers are merged and duplicate issues are removed.
+The system automatically detects the programming language of the submitted code.
 
-6️⃣ **Code Quality Scoring**
+Supported languages:
 
-The system calculates a score starting from **100**.
+* Python
+* JavaScript
+
+The detection is performed using syntax patterns and keywords.
+
+---
+
+### 4️⃣ Static Code Analysis
+
+The system performs rule-based static analysis.
+
+Python code is analyzed using:
+
+* **Python AST (Abstract Syntax Tree)**
+
+JavaScript code is analyzed using:
+
+* **ESLint**
+
+Static analysis detects:
+
+* syntax errors
+* unsafe functions (e.g., `eval`)
+* complexity issues
+* code style violations
+
+---
+
+### 5️⃣ LLM Semantic Analysis
+
+The code is sent to a Large Language Model via the **Groq API (Llama 3)**.
+
+The AI performs deeper semantic analysis and identifies:
+
+* logical bugs
+* security vulnerabilities
+* inefficient algorithms
+* readability problems
+* maintainability issues
+
+The LLM acts like a **senior developer performing a code review**.
+
+---
+
+### 6️⃣ Issue Aggregation
+
+Results from the static analyzer and the LLM are combined.
+
+The system:
+
+* merges issues
+* removes duplicates
+* standardizes severity levels
+
+---
+
+### 7️⃣ Code Quality Scoring
+
+The system calculates a **code health score**.
+
+The score starts at:
+
+```
+100
+```
+
+Penalties are applied based on issue severity.
 
 | Severity | Penalty |
 | -------- | ------- |
@@ -164,19 +225,55 @@ The system calculates a score starting from **100**.
 | Medium   | -10     |
 | Low      | -5      |
 
-7️⃣ **Database Storage**
+The final score reflects the overall code quality.
 
-Analysis results are stored in **SQLite** using SQLAlchemy.
+---
 
-8️⃣ **Response Delivery**
+### 8️⃣ JSON Response
 
-The API returns a structured JSON response containing:
+The system returns a structured JSON response containing:
 
-• detected issues
-• severity breakdown
-• code quality score
-• LLM summary
+* detected language
+* final score
+* severity breakdown
+* static analysis issues
+* AI-generated issues
+* LLM summary
 
+Example response:
+
+```
+{
+  "language": "python",
+  "score": 90,
+  "static_issues": [],
+  "ai_issues": [...],
+  "summary": "Code works but has minor style issues."
+}
+```
+
+---
+
+### 📊 Pipeline Overview
+
+```
+Client Request
+      ↓
+FastAPI Endpoint
+      ↓
+Language Detection
+      ↓
+Static Analysis
+ (Python AST / ESLint)
+      ↓
+LLM Semantic Analysis
+      ↓
+Issue Aggregation
+      ↓
+Score Calculation
+      ↓
+JSON Response
+```
 ---
 
 # 📂 Project Structure
