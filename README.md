@@ -5,7 +5,7 @@ CodeGuard AI is a **hybrid AI-powered code review system** that combines **stati
 The system integrates **FastAPI**, **Python AST**, **ESLint**, and **Groq LLM (Llama 3)** to perform automated code reviews and generate a **code quality score**.
 
 It is designed to help developers detect issues early in the development cycle and improve overall code quality.
- 
+  
 ---   
   
 # 📌 Problem Statement     
